@@ -1,5 +1,4 @@
 (ns webmine.feeds
-  (comment 
   (:use clojure.xml
         clojure.set
         clojure.contrib.java-utils
@@ -9,7 +8,8 @@
         [clojure.java.io :only [input-stream]])
   (:require ;[work.core :as work]
             [clojure.zip :as zip]
-            [clojure.contrib.logging :as log]
+                                        ; [clojure.contrib.logging :as log]
+            ;;TODO: find an alternative for log
             [clojure.contrib.zip-filter :as zip-filter]
             [clojure.contrib.zip-filter.xml :as xml-zip]
             [clj-time.format :as time-fmt]
@@ -79,7 +79,8 @@
                                  :let [s (get-text k)]
                                  :when k] (if s (compact-date-time s)
                                               nil)))
-                    (catch Exception e (log/error e)))
+                                        ; (catch Exception e (log/error e)))
+                    (catch Exception e (print e)))
                ;; author
                (get-text :author))]
     (try (mk-des entry)
@@ -177,14 +178,21 @@
        (feed? other)))
 
 ;;TODO: refactor to a sinlge api - url, string url, etc.
+;(defn find-outlinks
+;"string (page body) -> url (blog homepage) -> outlinks"
+;[s h]
+;  (seq (into #{}
+;	     (work/filter-work
+;	      #(external? (url h) %)
+;	      (url-seq s)
+;	      20))))
 (defn find-outlinks
 "string (page body) -> url (blog homepage) -> outlinks"
 [s h]
   (seq (into #{}
-	     (work/filter-work
+	     (filter
 	      #(external? (url h) %)
-	      (url-seq s)
-	      20))))
+	      (url-seq s)))))
 
 (defn comment? [u]
 (.contains (str u) "comments"))
@@ -245,13 +253,21 @@
 
 (def canonical-feed (comp min-length host-rss-feeds))
 
+;(defn canonical-feeds
+;"
+;Avoid subscribing to multiple feeds on the same blog.
+;Initial heuristic is to take url with min length.
+;May not be a good idea for blogs that have many useful feeds, for example, for a news site like huffin;gton post."
+;[urls]
+;(seq (into #{} (work/map-work canonical-feed urls 20))))
+
 (defn canonical-feeds
 "
 Avoid subscribing to multiple feeds on the same blog.
 Initial heuristic is to take url with min length.
 May not be a good idea for blogs that have many useful feeds, for example, for a news site like huffington post."
 [urls]
-(seq (into #{} (work/map-work canonical-feed urls 20))))
+(seq (into #{} (pmap canonical-feed urls))))
 
 ;;TODO: parallelize
 (defn blogroll [opml]
@@ -310,7 +326,4 @@ May not be a good idea for blogs that have many useful feeds, for example, for a
   (entries "http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml")
   (canonical-feed "http://io9.com/")
   (canonical-feed "http://www.huffingtonpost.com/")
-)
-
-
-)
+  )
