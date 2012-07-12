@@ -1,4 +1,5 @@
 (ns webmine.feeds
+  (comment 
   (:use clojure.xml
         clojure.set
         clojure.contrib.java-utils
@@ -6,7 +7,7 @@
         webmine.parser
         webmine.urls
         [clojure.java.io :only [input-stream]])
-  (:require [work.core :as work]
+  (:require ;[work.core :as work]
             [clojure.zip :as zip]
             [clojure.contrib.logging :as log]
             [clojure.contrib.zip-filter :as zip-filter]
@@ -312,3 +313,4 @@ May not be a good idea for blogs that have many useful feeds, for example, for a
 )
 
 
+)

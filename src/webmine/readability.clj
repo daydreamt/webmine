@@ -6,12 +6,12 @@
     See comment form below for example sites that work 
     and one that doesn't. "
     :author "Aria Haghighi <me@aria42.com>"}
-  (:use [infer.measures :only [sparse-dot-product]]
-        [clojure.contrib.def :only [defvar-]])  
+  (:use [webmine.core :only [sparse-dot-product]]
+        [clojure.contrib.def :only [defvar-]]) 
   (:require [clojure.string :as clj-str]
             [webmine.parser :as parser])
   (:import [org.apache.xerces.dom ElementNSImpl]))
-  
+
 (defvar- NEGATIVE  
   #"comment|meta|footer|navigation|footnote|foot"
   "Bad words for class or ids")  

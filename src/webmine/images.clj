@@ -3,7 +3,7 @@
   (:import javax.imageio.ImageIO)
   (:require [clj-http.client :as cl])
   (:use
-   infer.core
+   webmine.core
    webmine.urls
    webmine.readability
    webmine.parser))
@@ -13,7 +13,7 @@
 ;;   (re-seq #"([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)" t))
 ;;"([^\s]+(\.(?i)(jpg|png|gif|bmp))$)" t))
 
-(defn ints [xs]
+(defn seq-to-int [xs]
   (map #(Integer/parseInt %) xs))
 
 (defn hw? [h w]
@@ -23,7 +23,7 @@
 
 (defn to-hw [h w] 
     (if (hw? h w)
-      (ints [h w])
+      (seq-to-int [h w])
       nil))
 
 (defn hw-from-style

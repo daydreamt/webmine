@@ -1,5 +1,6 @@
 (ns webmine.core
-  (:require [clj-http.client :as client]))
+  (:require [clj-http.client :as client])
+  (:use [clojure.test]))
 
 ;; From l.core
 (defn maybe-comp [& fs]
@@ -33,3 +34,9 @@
 ;; From l.core
 (defn min-length [us]
   (min-by (comp count str) us))
+
+;;from infer.core? I couldn't find the sparse one.
+(defn sparse-dot-product
+  "Actually, it's just a dumb dot product."
+  [x y]
+  (apply + (map * x y)))
