@@ -1,6 +1,5 @@
 (ns webmine.urls
   (:use [webmine.core])
- ; (:require  [work.core :as work]) ;ignored, because it messes up 1.3
   (:import (java.net URL InetAddress
                      MalformedURLException UnknownHostException
 		     HttpURLConnection Proxy)))
@@ -91,14 +90,6 @@
 	       x)))))
    xs))
 
-;(defn unique-hosts
-;  "given a seq of links, return the unique list of expanded host urls."
-;  [us] 
-;  (seq (into #{}
-;	     (filter identity
-                                        ;  (work/map-work (maybe-comp host-url expand) us 20)))))
-(defn ap2 [x]
-  (apply str (concat x " is awesome")))
 (defn unique-hosts
   "given a seq of links, return the unique list of expanded host urls."
   [us] 
