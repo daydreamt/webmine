@@ -1,4 +1,4 @@
-(defproject webmine "0.1.1-SNAPSHOT"
+(defproject org.clojars.daydream/webmine "0.1.11-SNAPSHOT"
   :description "Web data mining library.
 
                Provides support for mining websites and newsfeeds."
@@ -6,7 +6,8 @@
                  [xerces/xercesImpl "2.9.1"]
                  [org.ccil.cowan.tagsoup/tagsoup "1.2"]
                  [xalan "2.7.1"]
-                 [rome "0.9"]                 
+                 [rome "0.9"]
+		 [org.clojure/tools.logging "0.2.3"]                 
                  [clj-http "0.1.0-SNAPSHOT"]
                  [clj-time "0.1.0-RC1"]]
   :dev-dependencies [[swank-clojure "1.3.0-SNAPSHOT"]

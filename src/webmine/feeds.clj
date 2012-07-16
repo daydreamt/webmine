@@ -6,10 +6,8 @@
         webmine.parser
         webmine.urls
         [clojure.java.io :only [input-stream]])
-  (:require ;[work.core :as work]
-            [clojure.zip :as zip]
-                                        ; [clojure.contrib.logging :as log]
-            ;;TODO: find an alternative for log
+  (:require [clojure.zip :as zip]
+            [clojure.tools.logging :as log :only error]                         
             [clojure.contrib.zip-filter :as zip-filter]
             [clojure.contrib.zip-filter.xml :as xml-zip]
             [clj-time.format :as time-fmt]
@@ -79,8 +77,8 @@
                                  :let [s (get-text k)]
                                  :when k] (if s (compact-date-time s)
                                               nil)))
-                                        ; (catch Exception e (log/error e)))
-                    (catch Exception e (print e)))
+                    (catch Exception e (log/error e)))
+               
                ;; author
                (get-text :author))]
     (try (mk-des entry)
