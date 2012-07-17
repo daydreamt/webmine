@@ -8,8 +8,9 @@
                  [xalan "2.7.1"]
                  [rome "0.9"]
 		 [org.clojure/tools.logging "0.2.3"]                 
-                 [clj-http "0.1.0-SNAPSHOT"]
-                 [clj-time "0.1.0-RC1"]]
+		 [clj-http "0.5.0"]
+		 [clj-time "0.4.3"]
+		[org.clojure/clojure-contrib "1.2.0"]]
   :dev-dependencies [[swank-clojure "1.3.0-SNAPSHOT"]
                      [lein-clojars "0.5.0"]]
   :repositories  {"apache" "https://repository.apache.org/content/repositories/releases/"}
